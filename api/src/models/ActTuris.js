@@ -9,12 +9,8 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     dificultad:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.ENUM('1', '2', '3', '4', '5'),
       allowNull: false,
-      validate: {
-        max: 5,
-        min: 1,
-      }
     },
     duracion:{
       type: DataTypes.INTEGER,
@@ -28,16 +24,8 @@ module.exports = (sequelize) => {
       }
     },
     temporada:{
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('Verano', 'Otoño', 'Invierno', 'Primavera'),
       allowNull: false,
-      validate: {
-        isIn: [['Verano', 'Otoño', 'Invierno', 'Primavera']],
-      }
-    },
-    id:{
-      type: DataTypes.INTEGER,
-      autoIncrement:true,
-      primaryKey: true,
     },
   },{
     timestamps:false,

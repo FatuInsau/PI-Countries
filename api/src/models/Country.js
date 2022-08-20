@@ -22,9 +22,11 @@ module.exports = (sequelize) => {
     },
     subregion:{
       type: DataTypes.STRING,
+      allowNull: true,
     },
     area:{
       type: DataTypes.INTEGER,
+      allowNull: true,
       // getter para mostrarlo con km2
       get() {
         return this.getDataValue('area') + ' km²'
@@ -32,6 +34,7 @@ module.exports = (sequelize) => {
     },
     poblacion:{
       type: DataTypes.INTEGER,
+      allowNull: true,
       // getter para mostrarlo como millones
       get() {
         return this.getDataValue('poblacion') + ' millones'
@@ -41,6 +44,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(3),
       allowNull: false,
       primaryKey: true,
+      unique:true,
     },
   },{
     timestamps:false,
