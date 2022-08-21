@@ -47,23 +47,28 @@ const apiInfoAll = async () => {
 
 router.get('/countries', async function( req, res ){
   const { nombre } = req.query;
+  //Si me pasaron algo que lo use, sino next
   if(nombre){
     try {
       const todo = await Country.findAll();
+      //Me fijo si existe alguno igual
       let buscado = await todo.filter( p => p.nombre.toLowerCase().includes(nombre.toLowerCase()))
-      console.log(buscado)
+      //Si existe alguno que me muestre
       if(buscado.length!==0){
         res.json(buscado);
       }else {
+        //Si no que me tire error
         res.status(404).send('No se encontró el pais buscado')
       }
+      //Por las dudas otro error
     } catch(e) {
       res.status(404).send(e.toString())
     };
   } else {
     try {
+      //ME TARDA EN LLEGAR LA INFOOOOO AAAAAAAAAAAAH PINCHE COSA FEA :'(
       //me guardo toda la info
-      const datos = await apiInfoAll();
+      await apiInfoAll();
       //busco en mi base de datos todos los paises con los datos que necesito
       const paises = await Country.findAll({
         attributes: [ 'nombre', 'imagen', 'continente' ]
@@ -78,6 +83,7 @@ router.get('/countries', async function( req, res ){
 router.get('/countries/:idPais', async function( req, res ){
   let { idPais } = req.params; 
   try {
+    //TRATE DE USAR LOS LINKS PERO FRACASE :'( LOS DEJO ACÁ POR SI ME TIRAN LA DATA
     // const response = await axios.get(`https://restcountries.com/v3/alpha/${idPais}`)
     // const unPais = {
     //   nombre:response.data[0].name.common?response.data[0].name.common:'No tiene nombre',
@@ -98,9 +104,28 @@ router.get('/countries/:idPais', async function( req, res ){
     // const todo = unPais.concat(datoQueFalta);
     res.send(datoQueFalta);
   } catch(e){
-    res.status(404).send(e.toString())
+    res.status(404).send(e.toString());
   };
 });
 
+router.post('/activities', async function( req, res ){
+
+  //Busco mis datos en el body
+  const { nombre, dificultad, duracion, temporada, idpaises} = req.body;
+  try {
+    //Creo en mi base de datos la nueva actividad
+    const newAct = await ActTuris.create({
+      nombre:nombre,
+      dificultad:dificultad,
+      duracion:duracion,
+      temporada:temporada,
+    })
+    //La conecto con los paises correspondientes
+    newAct.addCountry(idpaises);
+    res.json(newAct);
+  } catch(e) {
+    res.status(404).send(e.toString());
+  }
+})
 
 module.exports = router;
