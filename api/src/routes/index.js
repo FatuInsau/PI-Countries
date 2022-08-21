@@ -1,6 +1,7 @@
 const { Router, response } = require('express');
 const axios = require('axios');
 const { Country, ActTuris } = require('../db');
+const { Op } = require('sequelize');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -42,66 +43,64 @@ const apiInfoAll = async () => {
 };
 
 
-// const bdInfo = async () => {
-//   return await ActTuris.findAll({
-//     incluide: {
-//       model: Country,
-//       attributes: ['nombre'],
-//       through: {
-//         attributes:[],
-//       },
-//     }
-//   })
-// }
-
-
 //rutas
 
 router.get('/countries', async function( req, res ){
-  try {
-    apiInfoAll();
-    const paises = await Country.findAll({
-      attributes: [ 'nombre', 'imagen', 'continente' ]
-    });
-    res.send(paises);
-  } catch(e){
-    res.status(404).send(e.toString())
-  };
+  const { nombre } = req.query;
+  if(nombre){
+    try {
+      const todo = await Country.findAll();
+      let buscado = await todo.filter( p => p.nombre.toLowerCase().includes(nombre.toLowerCase()))
+      console.log(buscado)
+      if(buscado.length!==0){
+        res.json(buscado);
+      }else {
+        res.status(404).send('No se encontró el pais buscado')
+      }
+    } catch(e) {
+      res.status(404).send(e.toString())
+    };
+  } else {
+    try {
+      //me guardo toda la info
+      const datos = await apiInfoAll();
+      //busco en mi base de datos todos los paises con los datos que necesito
+      const paises = await Country.findAll({
+        attributes: [ 'nombre', 'imagen', 'continente' ]
+      });
+      res.json(paises);
+    } catch(e){
+      res.status(404).send(e.toString())
+    };
+  }
 });
 
 router.get('/countries/:idPais', async function( req, res ){
   let { idPais } = req.params; 
   try {
-    const response = await axios.get(`https://restcountries.com/v3/alpha/${idPais}`)
-    res.send({
-      nombre:response.data[0].name.common,
-      imagen:response.data[0].flags[1],
-      continente:response.data[0].region,
-      capital:response.data[0].capital[0],
-      subregion:response.data[0].subregion,
-      area:response.data[0].area,
-      poblacion:response.data[0].population,
-      id:response.data[0].cca3,
-      // actTuris:response.data[0].,
+    // const response = await axios.get(`https://restcountries.com/v3/alpha/${idPais}`)
+    // const unPais = {
+    //   nombre:response.data[0].name.common?response.data[0].name.common:'No tiene nombre',
+    //   imagen:response.data[0].flags[1],
+    //   continente:response.data[0].region,
+    //   capital:response.data[0].capital?response.data[0].capital[0]:'No tiene capital',
+    //   subregion:response.data[0].subregion?response.data[0].subregion:'No tiene subregion',
+    //   area:response.data[0].area,
+    //   poblacion:response.data[0].population,
+    //   id:response.data[0].cca3,
+    // };
+
+    //busco en mi base de datos el pais con su actividad
+    const datoQueFalta = await Country.findByPk(idPais.toUpperCase(),{
+      include:ActTuris,
+      // attributes:[],
     });
+    // const todo = unPais.concat(datoQueFalta);
+    res.send(datoQueFalta);
   } catch(e){
     res.status(404).send(e.toString())
   };
 });
-
-router.get('/countries', async function( req, res ){
-  const { nombre } = req.params; 
-  try {
-    const response = await axios.get(`https://restcountries.com/v3/name/${nombre}`)
-    res.send({
-      //??
-    });
-  } catch(e){
-    res.status(404).send(e.toString())
-  };
-});
-
-//   
 
 
 module.exports = router;
