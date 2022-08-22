@@ -1,47 +1,9 @@
 const { Router, response } = require('express');
 const axios = require('axios');
 const { Country, ActTuris } = require('../db');
-const { Op } = require('sequelize');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 
 const router = Router();
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
-//funciones 
-
-//Pedir los paises a la api y guardarlos en mi base de datos
-const apiInfoAll = async () => {
-  //Me fijo si tiene algo ya
-  const guardados = await Country.findAll();
-  if(guardados.length<1){
-    axios.get('https://restcountries.com/v3/all').then((response) => {
-      //Por cada país que recibió, creo una instancia en mi base de datos
-      response.data.forEach(pais => {
-        var paises = Country.findOrCreate({
-          where: {
-            //solo los datos necesarios
-            nombre:pais.name.common?pais.name.common:'No tiene nombre',
-            imagen:pais.flags[1],
-            continente:pais.region,
-            //¿por qué me faltan algunos datos? :'(
-            capital:pais.capital?pais.capital[0]:'No tiene capital',
-            subregion:pais.subregion?pais.subregion:'No tiene subregion',
-            area:pais.area,
-            poblacion:pais.population,
-            id:pais.cca3,
-          },
-        });
-        //Los devuelvo
-        return paises;
-      });
-    });
-  };
-};
-
 
 //rutas
 
@@ -66,14 +28,39 @@ router.get('/countries', async function( req, res ){
     };
   } else {
     try {
-      //ME TARDA EN LLEGAR LA INFOOOOO AAAAAAAAAAAAH PINCHE COSA FEA :'(
-      //me guardo toda la info
-      await apiInfoAll();
-      //busco en mi base de datos todos los paises con los datos que necesito
-      const paises = await Country.findAll({
+
+      //Me fijo cuánto tengo en mi base de datos
+      const count = await Country.count();
+
+      //Si no tengo nada que me agregue los datos de la api
+      if(count===0){
+
+        //Me guardo toda la info
+        const todoInfo= await axios.get('https://restcountries.com/v3/all')
+
+        //Solo los datos necesarios de cada pais para mi BD
+        let paises = todoInfo.data.map( pais => ({
+          nombre:pais.name.common?pais.name.common:'No tiene nombre',
+          imagen:pais.flags[1],
+          continente:pais.region,
+          //¿por qué me faltan algunos datos? :'(
+          capital:pais.capital?pais.capital[0]:'No tiene capital',
+          subregion:pais.subregion?pais.subregion:'No tiene subregion',
+          area:pais.area,
+          poblacion:pais.population,
+          id:pais.cca3
+        }))
+
+        //Los agrego a todos a mi base de datos
+        await Country.bulkCreate(paises);
+      }
+
+      //Busco en mi base de datos todos los paises con lo justo y necesario
+      const paisesResumen = await Country.findAll({
         attributes: [ 'nombre', 'imagen', 'continente' ]
       });
-      res.json(paises);
+
+      res.json(paisesResumen);
     } catch(e){
       res.status(404).send(e.toString())
     };
