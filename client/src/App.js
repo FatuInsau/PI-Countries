@@ -11,11 +11,11 @@ function App() {
   return (
     <React.Fragment>
 
-      <NavBar/>
+      <Route path={'/home'} component={ NavBar } />
 
       <Switch>
 
-        <Route path={'home/crearActividad'} component={ ActividadNew } />
+        <Route path={'/home/crearActividad'} component={ ActividadNew } />
 
         <Route path={'/home/:idPais'} component={ Detalle } />
 

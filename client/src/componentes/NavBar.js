@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-//PRUEBA, NO ESTÁ LISTO
 
 export default function NavBar(){
   return (

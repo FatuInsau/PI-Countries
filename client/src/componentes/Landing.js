@@ -1,9 +1,17 @@
+
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-//PRUEBA, NO ESTÁ LISTO
 
-export default function NavBar(){
+
+export default function Landing(){
   return (
-    <div>HOLA, ESTAS EN LANDING</div>
+    <section className="sectionLanding">
+    
+      <div className="sectionLanding_boton">
+        <NavLink to={'/home'}>Country App</NavLink>
+      </div>
+        
+    </section>
   )
 };

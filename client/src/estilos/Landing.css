@@ -1,0 +1,27 @@
+.sectionLanding{
+  heigh:665px;
+  background-image: url('https://images.alphacoders.com/106/106413.jpg');
+}
+
+
+
+/* ver de no ponerle fondo al boton
+.sectionLanding_boton{
+  height: 80px;
+  font-size: 1.6em;
+  display: flex;
+  flex: 1;
+  background-color: #ac0246;
+  margin-top: 8px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  border-radius: 45px;
+}
+
+.sectionLanding_boton:hover{
+  background-color: #5a01a7;
+} */
