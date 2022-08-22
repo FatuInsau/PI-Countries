@@ -1,10 +1,31 @@
 import './App.css';
+import React from 'react';
+import NavBar from './componentes/NavBar';
+import { Route, Switch } from 'react-router-dom';
+import Landing from './componentes/Landing';
+import Home from './componentes/Home';
+import Detalle from './componentes/Detalle';
+import ActividadNew from './componentes/ActividadNew';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Countries</h1>
-    </div>
+    <React.Fragment>
+
+      <NavBar/>
+
+      <Switch>
+
+        <Route path={'home/crearActividad'} component={ ActividadNew } />
+
+        <Route path={'/home/:idPais'} component={ Detalle } />
+
+        <Route path={'/home'} component={ Home } />
+
+        <Route path= {'/'} component={ Landing } />
+        
+      </Switch>
+    
+    </React.Fragment>
   );
 }
 
