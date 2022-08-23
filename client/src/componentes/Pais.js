@@ -1,20 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
-
-
-//PRUEBA, NO ESTÁ LISTO
-
-export default function Pais(){
+// recibo por props los datos de cada país y los renderizo
+export default function Pais({ nombre, imagen, continente }){
   return (
     <section className="sectionPais">
-      <img src="" alt="imagen de una bandera" />
-      <h3 className="sectionPais_h3">NOMBRE</h3>
-      <p className="sectionPais_p">CAPITAL</p>
-      <NavLink to={'/home/:idPais'}>
-        <button className="sectionPais_button">DETALLE</button>
-      </NavLink>
-      
+
+      <img src={imagen} alt="imagen de una bandera" width={'300rem'} height={'150rem'} />
+      <h3 className="sectionPais_h3">{nombre}</h3>
+      <p className="sectionPais_p">{continente}</p>
     </section>
   )
 };

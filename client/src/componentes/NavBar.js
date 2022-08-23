@@ -10,7 +10,7 @@ export default function NavBar(){
           <NavLink to='/home'>Home</NavLink> 
         </li>
         <li>
-          <NavLink to='/'>Landing</NavLink>
+          <NavLink to='/'>Country App</NavLink>
         </li>
       </ul>
     </nav>
