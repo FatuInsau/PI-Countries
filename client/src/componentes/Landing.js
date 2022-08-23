@@ -9,7 +9,10 @@ export default function Landing(){
     <section className="sectionLanding">
     
       <div className="sectionLanding_boton">
-        <NavLink to={'/home'}>Country App</NavLink>
+        <h3 className="sectionLanding_h3">Country App</h3>
+        <NavLink to={'/home'}>
+          <button>Empezar...</button>
+        </NavLink>
       </div>
         
     </section>

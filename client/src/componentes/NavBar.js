@@ -12,9 +12,6 @@ export default function NavBar(){
         <li>
           <NavLink to='/'>Landing</NavLink>
         </li>
-        <li>
-        <NavLink to='/home/crearActividad'>Nueva Actividad</NavLink>
-        </li>
       </ul>
     </nav>
   )
