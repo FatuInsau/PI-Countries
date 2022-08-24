@@ -5,6 +5,7 @@ import { getAllPaises } from "../redux/actions";
 import Pais from './Pais';
 import { NavLink } from 'react-router-dom';
 import Paginado from "./Paginado";
+import '../estilos/Home.css'
 
 //PRUEBA, NO ESTÁ LISTO
 
@@ -15,21 +16,35 @@ export default function Home(){
   //Mi estado de la página actual
   const [currentPage,setCurrentPage]=useState(1);
   //Me fijo cuántos paises tengo que mostrar por página
-  //VER QUE ONDA
   const [paisPorPagina,setPaisPorPagina]=useState(10);
+
   //Indice del ultimo pais por pagina
-  const ultimoPais = currentPage*paisPorPagina;
+  const ultimoPais = function (currentPage) {
+    //Pinche paginado culero!! ME SALIOOOO 
+    if(currentPage===1){
+      return 9;
+    } else {
+      return (currentPage*paisPorPagina)-1;
+    }
+  }(currentPage);
+
   //Indice del primer pais por pagina
-  const primerPais = ultimoPais-paisPorPagina;
+  const primerPais = function (ultimoPais,paisPorPagina) {
+    if(currentPage===1){
+      return 0;
+    } else {
+      return ultimoPais-paisPorPagina;
+    }
+  }(ultimoPais,paisPorPagina);
+  
   //Arreglo de paises por pagina
   const currentPais = allPaises.slice(primerPais,ultimoPais);
 
   const paginado = (numDePag) => {
     setCurrentPage(numDePag)
   };
-
   
-
+  //Despacho esta action
   useEffect( () => {
     dispatch(getAllPaises());
   },[dispatch]);
@@ -59,23 +74,25 @@ export default function Home(){
         {
           currentPais?.map( pais => {
             return (
-              <fragment className="div_divpais">
+              <div className="div_divpais" key={pais.id}>
                 <NavLink to={'/home/'+pais.id}>
                   <Pais 
-                    name={ pais.nombre }
+                    nombre={ pais.nombre }
                     imagen={ pais.imagen }
                     continente={ pais.continente } />
                 </NavLink>
-              </fragment>              
+              </div>              
             );
         })
       }
       </div>
-      <Paginado
-      paisPorPagina={ paisPorPagina }
-      allPaises={ allPaises }
-      paginado={ paginado } />
-      ver paginado
+
+      <div className="sectionHome_divPaginado">
+        <Paginado
+          allPaises={ allPaises.length }
+          paginado={ paginado } />
+      </div>
+        
     </section>
   )
 };
