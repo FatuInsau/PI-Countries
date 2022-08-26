@@ -1,7 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPaises } from "../redux/actions";
+import { 
+  getAllPaises, 
+  filtroPaisPorContinente, 
+  filtroPaisAscODesc,
+  filtroPaisPorPoblacion, } from "../redux/actions";
 import Pais from './Pais';
 import { NavLink } from 'react-router-dom';
 import Paginado from "./Paginado";
@@ -17,10 +21,11 @@ export default function Home(){
   const [currentPage,setCurrentPage]=useState(1);
   //Me fijo cuántos paises tengo que mostrar por página
   const [paisPorPagina,setPaisPorPagina]=useState(10);
+  const [orden, setOrden]=useState('');
 
   //Indice del ultimo pais por pagina
   const ultimoPais = function (currentPage) {
-    //Pinche paginado culero!! ME SALIOOOO 
+
     if(currentPage===1){
       return 9;
     } else {
@@ -49,6 +54,24 @@ export default function Home(){
     dispatch(getAllPaises());
   },[dispatch]);
 
+  function handleFiltroAscODesc (e) {
+    e.preventDefault();
+    dispatch(filtroPaisAscODesc(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`)
+  }
+
+  function handleFiltroPoblacion (e) {
+    e.preventDefault();
+    dispatch(filtroPaisPorPoblacion(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`)
+  }
+
+  function handleFiltroContinente (e){
+    dispatch(filtroPaisPorContinente(e.target.value));
+  };
+
 
   return (
     <section className="sectionHome">
@@ -57,17 +80,24 @@ export default function Home(){
         <button className="sectionHome_button">Crear Actividad</button>
       </NavLink>
       <div className="sectionHome_divFiltro">
-        <select name="" id="" className="div_selectOrden">
+        <select className="div_selectOrden" onChange={ e => handleFiltroAscODesc(e)} >
+          <option value="todos">Alfabéticamente</option>
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
-        <select name="" id="" className="div_selectContinente">
+        <select className="div_selectPoblacion" onChange={ e => handleFiltroPoblacion(e)} >
+          <option value="todo">Población</option>
+          <option value="mayor">De Mayor a Menor</option>
+          <option value="menor">De Menor a Mayor</option>
+        </select>
+        <select className="div_selectContinente" onChange={ e => handleFiltroContinente(e)} >
           <option value="Todos">Todos</option>
           <option value="Africa">África</option>
           <option value="Americas">Americas</option>
           <option value="Asia">Asia</option>
           <option value="Europe">Europa</option>
           <option value="Oceania">Oceania</option>
+          <option value="Antarctic">Antartica</option>
         </select>
       </div>
       <div className="sectionHome_divPaises">

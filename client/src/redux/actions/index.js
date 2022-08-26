@@ -1,6 +1,11 @@
+import axios from 'axios';
 // Dejo por aca las action types
 export const GET_ALL_PAISES = 'GET_ALL_PAISES';
 export const GET_PAISES_DETALLE = 'GET_PAISES_DETALLE';
+export const FILTRO_PAIS_POR_CONTINENTE = 'FILTRO_PAIS_POR_CONTINENTE';
+export const FILTRO_PAIS_ASC_O_DESC = 'FILTRO_PAIS_ASC_O_DESC';
+export const FILTRO_PAIS_POR_POBLACION = 'FILTRO_PAIS_POR_POBLACION';
+export const POST_ACTIVIDAD = 'POST_ACTIVIDAD';
 
 
 export const getAllPaises = () => {
@@ -20,6 +25,34 @@ export const getPaisesDetalle = (id) => {
         dispatch({type: GET_PAISES_DETALLE, payload: json})
     }).catch( err => console.log(err))
   }};
+
+export const filtroPaisAscODesc =(payload) => {
+  return {
+    type: FILTRO_PAIS_ASC_O_DESC,
+    payload,
+  }
+}
+
+export const filtroPaisPorContinente = (payload) => {
+  return {
+    type: FILTRO_PAIS_POR_CONTINENTE,
+    payload,
+  };
+};
+
+export const filtroPaisPorPoblacion = (payload) => {
+  return {
+    type: FILTRO_PAIS_POR_POBLACION,
+    payload,
+  }
+}
+
+export const postActividad = (payload) => {
+  return async function (dispatch){
+    const response = await axios.post('http://localhost:3001/activities',payload);
+    return response;
+  }
+}
 
 // export const createMovie = (payload) => {
 //   return {
