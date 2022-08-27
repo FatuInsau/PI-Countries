@@ -29,6 +29,8 @@ export default function ActividadNew(){
     temporada: '',
     idpaises: [],
   })
+
+  console.log(input)
   // const [error,setError] = useState({});
 
   function handleChange(e) {
@@ -48,7 +50,7 @@ export default function ActividadNew(){
         ...input,
         idpaises: [...input.idpaises, e.target.id],
       }) 
-    } console.log(e.target.id)
+    }
     if(!e.target.checked){
       setInput({
         ...input,

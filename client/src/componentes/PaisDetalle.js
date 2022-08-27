@@ -9,8 +9,8 @@ export default function PaisDetalle({ nombre, continente, id, capital, subregion
       <p className="sectionPaisDetalle_p">Código del COI: {id}</p>
       <p className="sectionPaisDetalle_p">Capital: {capital}</p>
       <p className="sectionPaisDetalle_p">Subregión: {subregion}</p>
-      <p className="sectionPaisDetalle_p">Área: {area} km²</p>
-      <p className="sectionPaisDetalle_p">Población: {poblacion} millones</p>
+      <p className="sectionPaisDetalle_p">Área: {area}</p>
+      <p className="sectionPaisDetalle_p">Población: {poblacion}</p>
     </section>
   )
 };

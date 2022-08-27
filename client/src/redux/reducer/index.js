@@ -7,6 +7,7 @@ import {
   POST_ACTIVIDAD,
   GET_PAISES_DETALLE,
   GET_PAIS_NOMBRE,
+  FILTRO_PAIS_POR_ACTIVIDAD,
 } from "../actions";
 
 // TENGO QUE SEGUIR TRABAJANDO, FAALTA ACÁ
@@ -16,6 +17,7 @@ const initialState = {
   paises: [],
   allPaises:[],
   pais:[],
+  actividad:[],
 };
 
 //Hacemos nuestro reducer
@@ -29,23 +31,22 @@ const rootReducer = (state = initialState, action) => {
         paises: action.payload,
         allPaises: action.payload,
       }
-      //VER CUANDO NO TIENE FILTRO Y TAMPOCO ANDA
     case FILTRO_PAIS_ASC_O_DESC:
       var ordenado = action.payload === 'asc'?
       state.paises.sort( function (a,b){
-        if( a.name > b.name ) {
+        if( a.nombre > b.nombre ) {
           return 1;
         }
-        if ( a.name < b.name ) {
+        if ( a.nombre < b.nombre ) {
           return -1;
         }
         return 0;
       }) : 
       state.paises.sort(function(a,b){
-        if( a.name > b.name ){
+        if( a.nombre > b.nombre ){
           return -1;
         }
-        if( a.name < b.name ){
+        if( a.nombre < b.nombre ){
           return 1;
         }
         return 0;
@@ -54,7 +55,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         paises: ordenado,
       }
-
+    case FILTRO_PAIS_POR_ACTIVIDAD: 
+      const misPaises = state.allPaises;
+      const filtrados = action.payload === 'todos' ? misPaises : misPaises.filter( p => p.ActTuris.indexOf(action.payload));
+      return{
+        ...state,
+        paises: filtrados,
+      }
     case FILTRO_PAIS_POR_CONTINENTE:
       const todosPaises = state.allPaises;
       const filtro = action.payload === 'Todos' ? todosPaises : todosPaises.filter( p => p.continente===action.payload);
@@ -62,24 +69,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         paises: filtro,
       }
-
-      //VER CUUANDO NO TIENE FILTRO Y TAMPOCO ANDA
       case FILTRO_PAIS_POR_POBLACION:
-        let orden = action.payload === 'mayor'?
+        let orden = action.payload === 'menor'?
         state.paises.sort( function (a,b){
-          if( a.name > b.name ) {
+          if( a.poblacion > b.poblacion ) {
             return 1;
           }
-          if ( a.name < b.name ) {
+          if ( a.poblacion < b.poblacion ) {
             return -1;
           }
           return 0;
         }) : 
         state.paises.sort(function(a,b){
-          if( a.name > b.name ){
+          if( a.poblacion > b.poblacion ){
             return -1;
           }
-          if( a.name < b.name ){
+          if( a.poblacion < b.poblacion ){
             return 1;
           }
           return 0;
@@ -91,6 +96,7 @@ const rootReducer = (state = initialState, action) => {
       case POST_ACTIVIDAD:
         return {
           ...state,
+          actividad: [...state.actividad,action.payload]
         }
       case GET_PAISES_DETALLE:
         return {
