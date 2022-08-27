@@ -138,13 +138,11 @@ export default function Home(){
         })
       }
       </div>
-
       <div className="sectionHome_divPaginado">
         <Paginado
           allPaises={ allPaises.length }
           paginado={ paginado } />
       </div>
-        
     </section>
   )
 };

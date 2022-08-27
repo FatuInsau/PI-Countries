@@ -1,0 +1,21 @@
+
+.sectionPaisDetalle_imagen{
+  width: 25rem;
+  margin: 1rem;
+}
+
+.sectionPaisDetalle_h3{
+  font-size: 2.5rem;
+  margin: 1rem;
+}
+
+.sectionPaisDetalle_ps{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  justify-items: start;
+  grid-gap: 0.5rem;
+}
+
+.sectionPaisDetalle_p{
+  font-size: 0.9rem;
+}

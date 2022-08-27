@@ -1,4 +1,4 @@
-
+import '../estilos/Landing.css'
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -6,15 +6,13 @@ import { NavLink } from "react-router-dom";
 
 export default function Landing(){
   return (
-    <section className="sectionLanding">
     
-      <div className="sectionLanding_boton">
-        <h3 className="sectionLanding_h3">Country App</h3>
-        <NavLink to={'/home'}>
-          <button>Empezar...</button>
+      <div className="divLanding">
+        <h3 className="divLanding_h3">Conoce el Mundo</h3>
+        <NavLink to={'/home'} className = 'divLanding_a'>
+          <button className="divLanding_boton">Empezar...</button>
         </NavLink>
       </div>
         
-    </section>
   )
 };

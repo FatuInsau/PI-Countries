@@ -1,0 +1,29 @@
+.sectionPaisDetalle {
+  flex-direction: column;
+  margin: 3rem;
+}
+
+.sectionPaisDetalle_divDetalle{
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 1rem;
+}
+
+.divDetalle_divPais{
+  background-color: #8e7852;
+  border-radius: 30px;
+  box-shadow: 11px 11px 15px 0px #00000069;
+}
+
+.divDetalle_divActividades{
+  background-color: #8e7852;
+  border-radius: 30px;
+  box-shadow: 11px 11px 15px 0px #00000069;
+  padding: 2rem;
+}
+
+.divActividades_h2 {
+  font-size: 1.5rem;
+  margin: 1rem;
+}

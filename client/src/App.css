@@ -9,4 +9,9 @@ html{
 
 body{
   font-size: .9rem;
+  background-image:url('https://i.pinimg.com/originals/83/11/4e/83114eedbb74b22fca59cf10e2621b36.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
 }

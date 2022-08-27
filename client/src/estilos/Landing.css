@@ -1,27 +1,43 @@
-.sectionLanding{
-  heigh:665px;
-  background-image: url('https://images.alphacoders.com/106/106413.jpg');
+.divLanding{
+  position: absolute;
+  background-image: url("https://images.alphacoders.com/106/106413.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 100%;
+  width: 100%;
+  color: #fbfff8;
+
+  display: grid;
 }
-
-
-
-/* ver de no ponerle fondo al boton
-.sectionLanding_boton{
-  height: 80px;
-  font-size: 1.6em;
+ 
+.divLanding_h3{
+  text-align: right;
+  margin: 1rem 0;
+  font-size: 3rem;
+  padding: 1rem 6rem 6px;
+  color: #000d37;
   display: flex;
-  flex: 1;
-  background-color: #ac0246;
-  margin-top: 8px;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-end;
   font-weight: bold;
-  color: white;
-  border: 2px solid white;
-  cursor: pointer;
-  border-radius: 45px;
 }
 
-.sectionLanding_boton:hover{
-  background-color: #5a01a7;
-} */
+.divLanding_a{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.divLanding_boton{
+  background-image: url('../imagenes/boton.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: whitesmoke;
+  margin: 2rem;
+  padding: 1rem 5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}

@@ -1,0 +1,16 @@
+.sectionActividadDetalle { 
+  background-color: #78684b;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 5px 7px 7px #3e2c1652;
+  display: grid;
+}
+
+.sectionActividadDetalle_h3 {
+  font-size: 1.2rem;
+  margin: 0.3rem;
+}
+
+.sectionActividadDetalle_p {
+  font-size: 0.9rem;
+}
