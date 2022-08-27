@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
       allowNull: true,
       // getter para mostrarlo como millones
       get() {
-        return this.getDataValue('poblacion') + ' millones'
+        return this.getDataValue('poblacion')
       }
     },
     id:{
