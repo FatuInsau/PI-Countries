@@ -41,7 +41,7 @@ router.get('/countries', async function( req, res ){
         //Solo los datos necesarios de cada pais para mi BD
         let paises = todoInfo.data.map( pais => ({
           nombre:pais.name.common?pais.name.common:'No tiene nombre',
-          imagen:pais.flags[1],
+          imagen:pais.flags[0],
           continente:pais.region,
           //¿por qué me faltan algunos datos? :'(
           capital:pais.capital?pais.capital[0]:'No tiene capital',
@@ -57,7 +57,8 @@ router.get('/countries', async function( req, res ){
 
       //Busco en mi base de datos todos los paises con lo justo y necesario
       const paisesResumen = await Country.findAll({
-        attributes: [ 'nombre', 'imagen', 'continente' ]
+        attributes: [ 'nombre', 'imagen', 'continente', 'id', 'poblacion' ],
+        include:ActTuris,
       });
 
       res.json(paisesResumen);
@@ -70,25 +71,12 @@ router.get('/countries', async function( req, res ){
 router.get('/countries/:idPais', async function( req, res ){
   let { idPais } = req.params; 
   try {
-    //TRATE DE USAR LOS LINKS PERO FRACASE :'( LOS DEJO ACÁ POR SI ME TIRAN LA DATA
-    // const response = await axios.get(`https://restcountries.com/v3/alpha/${idPais}`)
-    // const unPais = {
-    //   nombre:response.data[0].name.common?response.data[0].name.common:'No tiene nombre',
-    //   imagen:response.data[0].flags[1],
-    //   continente:response.data[0].region,
-    //   capital:response.data[0].capital?response.data[0].capital[0]:'No tiene capital',
-    //   subregion:response.data[0].subregion?response.data[0].subregion:'No tiene subregion',
-    //   area:response.data[0].area,
-    //   poblacion:response.data[0].population,
-    //   id:response.data[0].cca3,
-    // };
 
     //busco en mi base de datos el pais con su actividad
     const datoQueFalta = await Country.findByPk(idPais.toUpperCase(),{
       include:ActTuris,
-      // attributes:[],
     });
-    // const todo = unPais.concat(datoQueFalta);
+
     res.send(datoQueFalta);
   } catch(e){
     res.status(404).send(e.toString());
