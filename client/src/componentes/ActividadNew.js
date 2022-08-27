@@ -7,15 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 //PRUEBA, NO ESTÁ LISTO
 
-function validate (input) {
-  let error= {};
-  if (!input.nombre) {
-    error.nombre = 'Se requiere el nombre';
-  } else if(!input.dificultad) {
-    error.dificultad= 'Se requiere la dificultad';
-  }
-  return error;
-}
+// function validate (input) {
+//   let error= {};
+//   if (!input.nombre) {
+//     error.nombre = 'Se requiere el nombre';
+//   } else if(!input.duracion) {
+//     error.duracion= 'Se requiere la duracion';
+//   }
+//   return error;
+// }
 
 export default function ActividadNew(){
 
@@ -27,32 +27,32 @@ export default function ActividadNew(){
     dificultad: 0,
     duracion: 0,
     temporada: '',
-    paises: [],
+    idpaises: [],
   })
-  const [error,setError] = useState({});
+  // const [error,setError] = useState({});
 
   function handleChange(e) {
     setInput({
       ...input,
       [e.target.name] : e.target.value
     });
-    setError(validate)({
-      ...error,
-      [e.target.name]:e.target.value
-    });
+    // setError(validate)({
+    //   ...error,
+    //   [e.target.name]:e.target.value
+    // });
   };
 
   function handleCheck(e){
     if(e.target.checked){
       setInput({
         ...input,
-        paises: [...input.paises, e.target.value],
-      })
-    } 
+        idpaises: [...input.idpaises, e.target.id],
+      }) 
+    } console.log(e.target.id)
     if(!e.target.checked){
       setInput({
         ...input,
-        paises: input.paises.filter( p => p !== e.target.value),
+        idpaises: input.idpaises.filter( p => p !== e.target.value),
       })
     }
   }
@@ -79,7 +79,7 @@ export default function ActividadNew(){
       dificultad: 0,
       duracion: 0,
       temporada: '',
-      paises: [],
+      idpaises: [],
     })
     history.push('/home')
   }
@@ -108,9 +108,9 @@ export default function ActividadNew(){
             value={input.nombre}
             name={'nombre'}
             onChange={ (e) => handleChange(e) } />
-            { error.nombre && (
+            {/* { error.nombre && (
               <p className="error">{error.nombre}</p>
-            )}
+            )} */}
           </div>
           <div>
             <label>Duracion:</label>
@@ -137,6 +137,7 @@ export default function ActividadNew(){
               type={"checkbox"}
               nombre={p.nombre}
               value={p.nombre} 
+              id={p.id}
               onChange={ (e) => handleCheck(e) } />{p.nombre}</label>
             ))}
           </div>

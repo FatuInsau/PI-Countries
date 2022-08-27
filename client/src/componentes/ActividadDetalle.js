@@ -1,14 +1,12 @@
 import React from "react";
 
-//PRUEBA, NO ESTÁ LISTO
-
-export default function ActividadDetalle(){
+export default function ActividadDetalle({ nombre, dificultad, duracion, temporada }){
   return (
     <section className="sectionActividadDetalle">
-      <h3 className="sectionActividadDetalle_h3">NOMBRE</h3>
-      <p className="sectionActividadDetalle_p">DIFICULTAD</p>
-      <p className="sectionActividadDetalle_p">DURACION</p>
-      <p className="sectionActividadDetalle_p">TEMPORADA</p>
+      <h3 className="sectionActividadDetalle_h3">{nombre}</h3>
+      <p className="sectionActividadDetalle_p">Dificultad: {dificultad}</p>
+      <p className="sectionActividadDetalle_p">Duración: {duracion}</p>
+      <p className="sectionActividadDetalle_p">Temporada: {temporada}</p>
     </section>
   )
 };

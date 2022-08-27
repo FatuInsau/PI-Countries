@@ -6,6 +6,7 @@ export const FILTRO_PAIS_POR_CONTINENTE = 'FILTRO_PAIS_POR_CONTINENTE';
 export const FILTRO_PAIS_ASC_O_DESC = 'FILTRO_PAIS_ASC_O_DESC';
 export const FILTRO_PAIS_POR_POBLACION = 'FILTRO_PAIS_POR_POBLACION';
 export const POST_ACTIVIDAD = 'POST_ACTIVIDAD';
+export const GET_PAIS_NOMBRE = 'GET_PAIS_NOMBRE';
 
 
 export const getAllPaises = () => {
@@ -48,37 +49,24 @@ export const filtroPaisPorPoblacion = (payload) => {
 }
 
 export const postActividad = (payload) => {
-  return async function (dispatch){
+  return async function () {
     const response = await axios.post('http://localhost:3001/activities',payload);
     return response;
   }
 }
 
-// export const createMovie = (payload) => {
-//   return {
-//     type: CREATE_MOVIE,
-//     payload: {
-//       id: id++,
-//       name: payload.name,
-//       director: payload.director,
-//       releaseYear: payload.releaseYear,
-//       description:payload.description,
-//       image: payload.image,
-//       runningTime: payload.runningTime,
-//     }
-// }};
+export const getPaisNombre = (payload) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get('http://localhost:3001/countries?nombre='+payload)
+    return dispatch ({
+      type: GET_PAIS_NOMBRE,
+      payload: response.data,
+    });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+    
+}
 
-// // Desde el componente ejecutamos la action creator, pasandole como argumento el id de la movie que queremos eliminar.
-// export const deleteMovie = (id) => {
-//   return {
-//     type: DELETE_MOVIE,
-//     payload: id
-// }};
-
-// // Desde el componente ejecutamos la action creator, pasandole como argumento los values que vamos a utilizar para enviar el form de contacto.
-// export const sendEmail = (payload) => {
-//   return {
-//     type: SEND_EMAIL,
-//     payload
-//   }
-// };

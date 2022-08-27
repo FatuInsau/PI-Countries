@@ -5,6 +5,8 @@ import {
   FILTRO_PAIS_ASC_O_DESC,
   FILTRO_PAIS_POR_POBLACION, 
   POST_ACTIVIDAD,
+  GET_PAISES_DETALLE,
+  GET_PAIS_NOMBRE,
 } from "../actions";
 
 // TENGO QUE SEGUIR TRABAJANDO, FAALTA ACÁ
@@ -13,6 +15,7 @@ import {
 const initialState = {
   paises: [],
   allPaises:[],
+  pais:[],
 };
 
 //Hacemos nuestro reducer
@@ -88,6 +91,16 @@ const rootReducer = (state = initialState, action) => {
       case POST_ACTIVIDAD:
         return {
           ...state,
+        }
+      case GET_PAISES_DETALLE:
+        return {
+          ...state,
+          pais: action.payload,
+        }
+      case GET_PAIS_NOMBRE:
+        return {
+          ...state,
+          paises: action.payload,
         }
     //Si no coincide ninguna accion me devuelve mi estado como estaba
     default: return {...state}               

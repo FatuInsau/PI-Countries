@@ -1,18 +1,16 @@
 import React from "react";
 
-//PRUEBA, NO ESTÁ LISTO
-
-export default function PaisDetalle(){
+export default function PaisDetalle({ nombre, continente, id, capital, subregion, area, poblacion, imagen }){
   return (
     <section className="sectionPaisDetalle">
-      <img src="" alt="" />
-      <h3 className="sectionPaisDetalle_h3">NOMBRE</h3>
-      <p className="sectionPaisDetalle_p">CONTINENTE</p>
-      <p className="sectionPaisDetalle_p">CODIGO 3 LETRAS</p>
-      <p className="sectionPaisDetalle_p">CAPITAL</p>
-      <p className="sectionPaisDetalle_p">SUBREGION</p>
-      <p className="sectionPaisDetalle_p">AREA</p>
-      <p className="sectionPaisDetalle_p">POBLACION</p>
+      <img src={imagen} alt='imagen de bandera' />
+      <h3 className="sectionPaisDetalle_h3">{nombre}</h3>
+      <p className="sectionPaisDetalle_p">Continente: {continente}</p>
+      <p className="sectionPaisDetalle_p">Código del COI: {id}</p>
+      <p className="sectionPaisDetalle_p">Capital: {capital}</p>
+      <p className="sectionPaisDetalle_p">Subregión: {subregion}</p>
+      <p className="sectionPaisDetalle_p">Área: {area} km²</p>
+      <p className="sectionPaisDetalle_p">Población: {poblacion} millones</p>
     </section>
   )
 };

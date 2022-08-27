@@ -10,6 +10,7 @@ import Pais from './Pais';
 import { NavLink } from 'react-router-dom';
 import Paginado from "./Paginado";
 import '../estilos/Home.css'
+import SearchBar from "./SearchBar";
 
 //PRUEBA, NO ESTÁ LISTO
 
@@ -71,7 +72,7 @@ export default function Home(){
   function handleFiltroContinente (e){
     dispatch(filtroPaisPorContinente(e.target.value));
   };
-
+ 
 
   return (
     <section className="sectionHome">
@@ -79,6 +80,7 @@ export default function Home(){
       <NavLink to={'/home/crearActividad'}>
         <button className="sectionHome_button">Crear Actividad</button>
       </NavLink>
+      <SearchBar/>
       <div className="sectionHome_divFiltro">
         <select className="div_selectOrden" onChange={ e => handleFiltroAscODesc(e)} >
           <option value="todos">Alfabéticamente</option>
@@ -105,11 +107,12 @@ export default function Home(){
           currentPais?.map( pais => {
             return (
               <div className="div_divpais" key={pais.id}>
-                <NavLink to={'/home/'+pais.id}>
+                <NavLink to={'/home/'+ pais.id}>
                   <Pais 
                     nombre={ pais.nombre }
                     imagen={ pais.imagen }
-                    continente={ pais.continente } />
+                    continente={ pais.continente }
+                    id= { pais.id } />
                 </NavLink>
               </div>              
             );
