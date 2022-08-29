@@ -1,0 +1,62 @@
+.sectionActividadNew {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #c7b67df2;
+  border-radius: 30px;
+  box-shadow: 20px 15px 20px 0px #00000042;
+}
+
+.sectionActividadNew_a {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sectionActividadNew_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.div_h3 {
+  font-size: 1.5rem;
+  margin: 0.3rem;
+  padding: 0.5rem;
+}
+
+.div_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form_section {
+  display: flex;
+  margin: 0.5rem 1rem;
+}
+
+.form_div {
+  padding: 1rem;
+}
+
+.form_select {
+  padding: 0 0.5rem;
+  margin: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+.form_divCheckbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.divCheckbox_div {
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  justify-items: start;
+  grid-gap: 0.5rem;
+}
+
+.form_divCheckbox_label {
+  padding: 1rem;
+}

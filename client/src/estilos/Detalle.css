@@ -1,6 +1,6 @@
 .sectionPaisDetalle {
   flex-direction: column;
-  margin: 3rem;
+  margin: 2rem 2rem 3rem 2rem;
 }
 
 .sectionPaisDetalle_divDetalle{
@@ -8,6 +8,7 @@
   justify-content: space-around;
   align-items: stretch;
   padding: 1rem;
+  margin: 8rem 0 1rem 0;
 }
 
 .divDetalle_divPais{

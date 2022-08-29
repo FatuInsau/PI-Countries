@@ -1,19 +1,20 @@
-.sectionHome{
+.sectionHome {
   display: flex;
   flex-direction: column;
+  margin: 8rem 1rem 1rem;
+  align-items: center;
 }
 
-/* .sectionHome_h1{
+.sectionHome_h1{
+  font-size: 3rem;
+}
+
+/* .sectionHome_divFiltro{
   display: flex;
   justify-content: center;
-}
+} */
 
-.sectionHome_divFiltro{
-  display: flex;
-  justify-content: center;
-}
-
-.sectionHome_button{
+/* .sectionHome_button{
     display: flex;
     justify-content: center;
 } */

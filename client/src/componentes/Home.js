@@ -10,10 +10,9 @@ import {
 import Pais from './Pais';
 import { NavLink } from 'react-router-dom';
 import Paginado from "./Paginado";
-import '../estilos/Home.css'
 import SearchBar from "./SearchBar";
+import '../estilos/Home.css'
 
-//PRUEBA, NO ESTÁ LISTO
 
 export default function Home(){
 
