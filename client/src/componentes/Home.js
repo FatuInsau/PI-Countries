@@ -6,7 +6,8 @@ import {
   filtroPaisPorContinente, 
   filtroPaisAscODesc,
   filtroPaisPorPoblacion,
-  filtroPaisPorActividad, } from "../redux/actions";
+  filtroPaisPorActividad,
+  getActividad } from "../redux/actions";
 import Pais from './Pais';
 import { NavLink } from 'react-router-dom';
 import Paginado from "./Paginado";
@@ -52,8 +53,10 @@ export default function Home(){
   };
   
   //Despacho esta action
+  //VER SI ASI ANDA
   useEffect( () => {
     dispatch(getAllPaises());
+    dispatch(getActividad())
   },[dispatch]);
 
   function handleFiltroAscODesc (e) {
@@ -85,22 +88,24 @@ export default function Home(){
   return (
     <section className="sectionHome">
       <h1 className="sectionHome_h1">Paises del Mundo</h1>
-      <NavLink to={'/home/crearActividad'}>
+      <div className="sectionHome_div">
+        <SearchBar/>
+        <NavLink to={'/home/crearActividad'}>
         <button className="sectionHome_button">Crear Actividad</button>
-      </NavLink>
-      <SearchBar/>
+        </NavLink>
+      </div>
       <div className="sectionHome_divFiltro">
-        <select className="div_selectOrden" onChange={ (e) => handleFiltroAscODesc(e) } >
+        <select className="div_selectTodos" onChange={ (e) => handleFiltroAscODesc(e) } >
           <option value="todo">Alfabéticamente</option>
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
-        <select className="div_selectPoblacion" onChange={ (e) => handleFiltroPoblacion(e) } >
+        <select className="div_selectTodos" onChange={ (e) => handleFiltroPoblacion(e) } >
           <option value="todo">Población</option>
           <option value="mayor">De Mayor a Menor</option>
           <option value="menor">De Menor a Mayor</option>
         </select>
-        <select className="div_selectContinente" onChange={ (e) => handleFiltroContinente(e) } >
+        <select className="div_selectTodos" onChange={ (e) => handleFiltroContinente(e) } >
           <option value="Todos">Todos</option>
           <option value="Africa">África</option>
           <option value="Americas">Americas</option>
@@ -109,7 +114,7 @@ export default function Home(){
           <option value="Oceania">Oceania</option>
           <option value="Antarctic">Antartica</option>
         </select>
-        <select className="div_selectActividad" onChange={ (e) => handleFiltroActividad(e) }>
+        <select className="div_selectTodos" onChange={ (e) => handleFiltroActividad(e) }>
           <option value="todos">Actividad</option>
           {
             allAct?.map ( a => {
@@ -125,7 +130,7 @@ export default function Home(){
           currentPais?.map( pais => {
             return (
               <div className="div_divpais" key={pais.id}>
-                <NavLink to={'/home/'+ pais.id}>
+                <NavLink to={'/home/'+ pais.id} className='div_a'>
                   <Pais 
                     nombre={ pais.nombre }
                     imagen={ pais.imagen }

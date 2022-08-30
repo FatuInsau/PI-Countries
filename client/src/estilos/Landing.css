@@ -28,6 +28,7 @@
   justify-content: center;
   align-items: flex-start;
   cursor: auto;
+  text-decoration: none;
 }
 
 .divLanding_boton{
@@ -41,4 +42,5 @@
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
+  font-size: 1.5rem;
 }

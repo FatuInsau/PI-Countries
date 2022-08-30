@@ -8,15 +8,15 @@ import '../estilos/ActividadNew.css';
 
 //PRUEBA, NO ESTÁ LISTO
 
-// function validate (input) {
-//   let error= {};
-//   if (!input.nombre) {
-//     error.nombre = 'Se requiere el nombre';
-//   } else if(!input.duracion) {
-//     error.duracion= 'Se requiere la duracion';
-//   }
-//   return error;
-// }
+function validate (input) {
+  let error= {};
+  if (!input.nombre) {
+    error.nombre = 'Se requiere el nombre';
+  } else if(!input.duracion) {
+    error.duracion= 'Se requiere la duracion';
+  }
+  return error;
+}
 
 export default function ActividadNew(){
 
@@ -32,17 +32,17 @@ export default function ActividadNew(){
   })
 
   console.log(input)
-  // const [error,setError] = useState({});
+  const [error,setError] = useState({});
 
   function handleChange(e) {
     setInput({
       ...input,
       [e.target.name] : e.target.value
     });
-    // setError(validate)({
-    //   ...error,
-    //   [e.target.name]:e.target.value
-    // });
+    setError(validate({
+      ...error,
+      [e.target.name]:e.target.value
+    }));
   };
 
   function handleCheck(e){
@@ -113,9 +113,9 @@ export default function ActividadNew(){
                 name={'nombre'}
                 className='div_input'
                 onChange={ (e) => handleChange(e) } />
-                {/* { error.nombre && (
+                { error.nombre && (
                 <p className="error">{error.nombre}</p>
-                )} */}
+                )}
             </div>
             <div className="form_div" >
               <label><b>Duracion: </b></label>

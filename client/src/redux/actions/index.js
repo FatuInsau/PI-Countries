@@ -8,6 +8,7 @@ export const FILTRO_PAIS_POR_POBLACION = 'FILTRO_PAIS_POR_POBLACION';
 export const POST_ACTIVIDAD = 'POST_ACTIVIDAD';
 export const GET_PAIS_NOMBRE = 'GET_PAIS_NOMBRE';
 export const FILTRO_PAIS_POR_ACTIVIDAD = 'FILTRO_PAIS_POR_ACTIVIDAD';
+export const GET_ACTIVIDAD = 'GET_ACTIVIDAD';
 
 
 export const getAllPaises = () => {
@@ -78,7 +79,20 @@ export const getPaisNombre = (payload) => {
     } catch (e) {
       console.log(e);
     }
+  }   
+}
+
+export const getActividad = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get('http://localhost:3001/activities')
+      return dispatch ({
+        type: GET_ACTIVIDAD,
+        payload: response.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
-    
 }
 

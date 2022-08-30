@@ -8,6 +8,7 @@ import {
   GET_PAISES_DETALLE,
   GET_PAIS_NOMBRE,
   FILTRO_PAIS_POR_ACTIVIDAD,
+  GET_ACTIVIDAD
 } from "../actions";
 
 // TENGO QUE SEGUIR TRABAJANDO, FAALTA ACÁ
@@ -56,8 +57,15 @@ const rootReducer = (state = initialState, action) => {
         paises: ordenado,
       }
     case FILTRO_PAIS_POR_ACTIVIDAD: 
-      const misPaises = state.allPaises;
-      const filtrados = action.payload === 'todos' ? misPaises : misPaises.filter( p => p.ActTuris.indexOf(action.payload));
+    let filtrados = [];
+    state.paises.forEach((p) => {
+        p.actTuris.forEach((a) => {
+            if(a.nombre === action.payload) {
+                return filtrados.push(p);
+            }
+        })
+    })
+    console.log(filtrados)
       return{
         ...state,
         paises: filtrados,
@@ -96,7 +104,6 @@ const rootReducer = (state = initialState, action) => {
       case POST_ACTIVIDAD:
         return {
           ...state,
-          actividad: [...state.actividad,action.payload]
         }
       case GET_PAISES_DETALLE:
         return {
@@ -107,6 +114,11 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           paises: action.payload,
+        }
+      case GET_ACTIVIDAD:
+        return {
+          ...state,
+          actividad: action.payload,
         }
     //Si no coincide ninguna accion me devuelve mi estado como estaba
     default: return {...state}               

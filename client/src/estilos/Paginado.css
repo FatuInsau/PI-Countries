@@ -1,0 +1,20 @@
+.navPaginado_ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ulPaginado_li {
+  padding: 0.5rem;
+  background-color: #554e40;
+  margin: 0.4rem;
+  border-radius: 99px;
+  list-style: none;
+}
+
+.liPaginado_a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}

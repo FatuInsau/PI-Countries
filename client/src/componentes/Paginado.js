@@ -1,4 +1,5 @@
 import React from "react";
+import '../estilos/Paginado.css'
 
 //VER LAS CLASES PARA DARLE ESTILO
 
@@ -11,11 +12,11 @@ export default function Paginado ({ allPaises, paginado }) {
   }
 
   return (
-    <nav>
-      <ul className="paginado">
+    <nav className="navPaginado">
+      <ul className="navPaginado_ul">
         { numeroDePaginas?.map( n => (
-          <li className="veremos" key={n}>
-            <a onClick={() => paginado(n)}>{n}</a>
+          <li className="ulPaginado_li" key={n}>
+            <a onClick={() => paginado(n)} className='liPaginado_a'>{n}</a>
           </li>
         ))}
       </ul>

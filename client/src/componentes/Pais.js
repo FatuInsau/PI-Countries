@@ -6,8 +6,8 @@ export default function Pais({ nombre, imagen, continente }){
   return (
     <section className="sectionPais">
 
-      <img src={imagen} alt="imagen de una bandera" width={'300rem'} height={'150rem'} />
-      <h3 className="sectionPais_h3">{nombre}</h3>
+      <img src={imagen} alt="imagen de una bandera" className="sectionPais_imagen" />
+      <h3><b className="sectionPais_h3">{nombre}</b></h3>
       <p className="sectionPais_p">{continente}</p>
 
     </section>
