@@ -41,7 +41,7 @@ router.get('/countries', async function( req, res ){
         //Solo los datos necesarios de cada pais para mi BD
         let paises = todoInfo.data.map( pais => ({
           nombre:pais.name.common?pais.name.common:'No tiene nombre',
-          imagen:pais.flags[0],
+          imagen:pais.flags[1],
           continente:pais.region,
           //¿por qué me faltan algunos datos? :'(
           capital:pais.capital?pais.capital[0]:'No tiene capital',
@@ -102,5 +102,10 @@ router.post('/activities', async function( req, res ){
     res.status(404).send(e.toString());
   }
 })
+
+router.get("/activities", async function( req , res ){
+  const activities = await ActTuris.findAll();
+  res.status(200).send(activities);
+});
 
 module.exports = router;
