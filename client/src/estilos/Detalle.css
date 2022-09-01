@@ -5,7 +5,7 @@
 
 .sectionPaisDetalle_divDetalle{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: stretch;
   padding: 1rem;
   margin: 8rem 0 1rem 0;
@@ -25,6 +25,26 @@
 }
 
 .divActividades_h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin: 1rem;
+  font-family: 'Cormorant SC', serif;
+}
+
+.a_button {
+  color: whitesmoke;
+  margin: 0.5rem;
+  padding: 0.3rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+  background-color: #3f0e1e;
+  border: 2px solid #8c7325;
+  font-family: 'Cormorant SC', serif;
+}
+
+.pAux {
+  text-align: center;
+  font-size: 1rem;
 }

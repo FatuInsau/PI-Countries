@@ -28,6 +28,7 @@ export const getPaisesDetalle = (id) => {
         dispatch({type: GET_PAISES_DETALLE, payload: json})
     }).catch( err => console.log(err))
   }};
+  
 
 export const filtroPaisAscODesc =(payload) => {
   return {
@@ -60,7 +61,6 @@ export const filtroPaisPorActividad = (payload) => {
 export const postActividad = (payload) => {
   return async function (dispatch) {
     const response = await axios.post('http://localhost:3001/activities',payload);
-    console.log(response)
     return dispatch ({
       type: POST_ACTIVIDAD,
       payload: response.data,

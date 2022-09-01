@@ -6,9 +6,11 @@
 }
 
 .sectionHome_h1{
-  font-size: 3rem;
+  font-size: 6rem;
   padding: 1rem;
   margin: 0 0 1rem 0;
+  font-family: 'Cormorant SC', serif;
+  text-shadow: 2px 2px 3px #ffffffa1;
 }
 
 .sectionHome_div {
@@ -23,9 +25,6 @@
 }
 
 .sectionHome_button {
-  background-image: url('../imagenes/boton.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
   color: whitesmoke;
   margin: 0.5rem;
   padding: 0.3rem 1.2rem;
@@ -34,20 +33,26 @@
   font-weight: bold;
   text-decoration: none;
   font-size: 1.2rem;
+  background-color: #3f0e1e;
+  border: 2px solid #8c7325;
+  font-family: 'Cormorant SC', serif;
 }
 
 .sectionHome_divFiltro {
   display: flex;
   padding: 1rem;
   justify-content: space-around;
-  width: 50%;
+  width: 60%;
   background-color: #514837c4;
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
 }
 
 .div_selectTodos {
   border-radius: 5px;
-  background-color: #bbae87;
+  background-color: #3f0e1e;
+  color: white;
+  font-size: 1.2rem;
+  font-family: 'Cormorant SC', serif;
 }
 
 .sectionHome_divPaises {
@@ -61,7 +66,7 @@
 
 .div_divpais {
   padding: 2rem;
-  background-color: #9b8145;
+  background-color: #847450de;
   margin: 1rem;
   border-radius: 27px;
   box-shadow: 4px 6px 5px #504737;

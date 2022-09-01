@@ -1,0 +1,18 @@
+.input {
+  background-color: #cbba86;
+  font-size: 1rem;
+}
+
+.button {
+  color: whitesmoke;
+  margin: 0.1rem;
+  padding: 0 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  background-color: #3f0e1e;
+  border: 2px solid #8c7325;
+  font-family: 'Cormorant SC', serif;
+}

@@ -17,7 +17,6 @@ export default function Detalle(props){
   },[dispatch]);
 
   const elPais = useSelector( (state) => state.pais);
-console.log(elPais)
 
   return (
     <section className="sectionPaisDetalle">
@@ -38,7 +37,7 @@ console.log(elPais)
         <div className="divDetalle_divActividades">
           <h2 className="divActividades_h2">Actividades Turísticas</h2>
           {
-            elPais.actTuris?.map( a => {
+            elPais.actTuris?.length>0 ? elPais.actTuris.map( a => {
               return (
                 <div className="divActividades_divAct" key={a.id}>
                   <ActividadDetalle
@@ -48,7 +47,8 @@ console.log(elPais)
                     temporada={ a.temporada } />
                 </div>
               )
-            })
+            }):
+            <p className="pAux">No tiene ninguna</p>
           }
       </div>
       </div>

@@ -2,11 +2,13 @@
 .sectionPaisDetalle_imagen{
   width: 25rem;
   margin: 1rem;
+  box-shadow: 3px 9px 9px 2px #3e2c169e;
 }
 
 .sectionPaisDetalle_h3{
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin: 1rem;
+  font-family: 'Cormorant SC', serif;
 }
 
 .sectionPaisDetalle_ps{
@@ -17,5 +19,5 @@
 }
 
 .sectionPaisDetalle_p{
-  font-size: 0.9rem;
+  font-size: 1rem;
 }

@@ -9,8 +9,9 @@
 .sectionActividadDetalle_h3 {
   font-size: 1.2rem;
   margin: 0.3rem;
+  font-family: 'Cormorant SC', serif;
 }
 
 .sectionActividadDetalle_p {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }

@@ -12,9 +12,19 @@ function validate (input) {
   let error= {};
   if (!input.nombre) {
     error.nombre = 'Se requiere el nombre';
-  } else if(!input.duracion) {
-    error.duracion= 'Se requiere la duracion';
-  }
+  } 
+  if (input.dificultad===0 || input.dificultad === 'Dificultades') {
+    error.dificultad = 'Se requiere la dificultad';
+  } 
+  if (!input.duracion || input.duracion === 'Duración') {
+    error.duracion = 'Se requiere la duración';
+  } 
+  if (!input.temporada || input.temporada === 'Temporadas') {
+    error.temporada = 'Se requiere la temporada';
+  } 
+  if (input.idpaises.length===0) {
+    error.paises = 'Se requiere agregar paises';
+  } 
   return error;
 }
 
@@ -26,12 +36,21 @@ export default function ActividadNew(){
   const [input,setInput] = useState({
     nombre: '',
     dificultad: 0,
-    duracion: 0,
+    duracion: '',
     temporada: '',
     idpaises: [],
   })
 
-  console.log(input)
+  allPaises.sort( function (a,b){
+    if( a.nombre > b.nombre ) {
+      return 1;
+    }
+    if ( a.nombre < b.nombre ) {
+      return -1;
+    }
+    return 0;
+  })
+
   const [error,setError] = useState({});
 
   function handleChange(e) {
@@ -39,31 +58,26 @@ export default function ActividadNew(){
       ...input,
       [e.target.name] : e.target.value
     });
-    setError(validate({
-      ...error,
-      [e.target.name]:e.target.value
-    }));
   };
-
-  function handleCheck(e){
-    if(e.target.checked){
-      setInput({
-        ...input,
-        idpaises: [...input.idpaises, e.target.id],
-      }) 
-    }
-    if(!e.target.checked){
-      setInput({
-        ...input,
-        idpaises: input.idpaises.filter( p => p !== e.target.value),
-      })
-    }
-  }
 
   function handleSelectDificultad(e) {
     setInput({
       ...input,
       dificultad: e.target.value,
+    })
+  }
+
+  function handleSelectDuracion(e) {
+    setInput({
+      ...input,
+      duracion: e.target.value,
+    })
+  }
+
+  function handleSelectPais(e) {
+    setInput({
+      ...input,
+      idpaises: [...input.idpaises,e.target.value],
     })
   }
 
@@ -76,15 +90,19 @@ export default function ActividadNew(){
 
   function handleSubmit(e){
     e.preventDefault();
-    dispatch(postActividad(input))
-    setInput({
-      nombre: '',
-      dificultad: 0,
-      duracion: 0,
-      temporada: '',
-      idpaises: [],
-    })
-    history.push('/home')
+    setError(validate(input))
+    const errores = validate(input)
+    if(Object.values(errores).length === 0){
+      dispatch(postActividad(input))
+      setInput({
+        nombre: '',
+        dificultad: 0,
+        duracion: '',
+        temporada: '',
+        idpaises: [],
+      })
+      history.push('/home')
+    }
   }
 
   useEffect( () => {
@@ -93,7 +111,14 @@ export default function ActividadNew(){
 
   const difilcultades = ['Dificultades','1','2','3','4','5'];
   const temporadas = ['Temporadas','Verano','Otoño','Invierno','Primavera'];
+  const duraciones = ['Duración','30 min','1 hora', '3 horas', '5 horas'];
 
+  function handleDelete (pa) {
+    setInput({
+      ...input,
+      idpaises: input.idpaises.filter( p => p !== pa)
+    })
+  }
 
   return (
     <section className="sectionActividadNew">
@@ -117,48 +142,58 @@ export default function ActividadNew(){
                 <p className="error">{error.nombre}</p>
                 )}
             </div>
-            <div className="form_div" >
-              <label><b>Duracion: </b></label>
-              <input 
-                type={"number"}
-                value={input.duracion}
-                name={'duracion'}
-                className='div_input'
-                onChange={ (e) => handleChange(e) } />
+            <div className="selector_error">
+              <select onChange={ (e) => handleSelectDuracion(e) } className='form_select' >
+                {duraciones.map( (d) => (
+                  <option value={d}>{d}</option>
+                ))}
+              </select>
+              { error.duracion && (
+                <p className="error">{error.duracion}</p>
+              )}
             </div>
-            <select onChange={ (e) => handleSelectDificultad(e) } className="form_select" >
-              {difilcultades.map( (d) => (
-                <option value={d}>{d}</option>
-              ))}
-            </select>
-            <select onChange={ (e) => handleSelectTemporada(e) } className="form_select" >
-              {temporadas.map( (t) => (
-                <option value={t}>{t}</option>
-              ))}
-            </select>
+            <div className="selector_error">
+              <select onChange={ (e) => handleSelectDificultad(e) } className="form_select" >
+                {difilcultades.map( (du) => (
+                  <option value={du}>{du}</option>
+                ))}
+              </select>
+              { error.dificultad && (
+                <p className="error">{error.dificultad}</p>
+              )}
+            </div>
+            <div className="selector_error">
+              <select onChange={ (e) => handleSelectTemporada(e) } className="form_select" >
+                {temporadas.map( (t) => (
+                  <option value={t}>{t}</option>
+                ))}
+              </select>
+              { error.temporada && (
+                <p className="error">{error.temporada}</p>
+              )}
+            </div>
           </section>
-          
-          <div className="form_divCheckbox" >
-            <label className="form_divCheckbox_label"><b>Paises: </b></label>
-            <div className="divCheckbox_div">
+          <div className="selector_error">
+            <select onChange={ (e) => handleSelectPais(e) } className= "form_select">
+              <option value="Todos">Paises</option>
               {allPaises.map( (p) => (
-                <label><input 
-                type={"checkbox"}
-                nombre={p.nombre}
-                value={p.nombre} 
-                id={p.id}
-                className='div_input'
-                onChange={ (e) => handleCheck(e) } />{p.nombre}</label>
-            ))}
-            </div>
-            
+                <option value={p.nombre}>{p.nombre}</option>
+              ))}
+            </select>
+            { error.paises && (
+              <p className="error">{error.paises}</p>
+            )}
           </div>
-
+          
+          { input.idpaises.map( (pa) => 
+          <div className="seleccionados">
+            <p>{pa}</p>
+            <button className="botonX" onClick={() => handleDelete(pa)}>x</button>
+          </div> )}
           <button type={'submit'} className='form_button'>Crear</button>
 
         </form>
       </div>
-        
     </section>
   )
 };

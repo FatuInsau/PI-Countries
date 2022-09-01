@@ -65,7 +65,6 @@ const rootReducer = (state = initialState, action) => {
             }
         })
     })
-    console.log(filtrados)
       return{
         ...state,
         paises: filtrados,
@@ -118,7 +117,7 @@ const rootReducer = (state = initialState, action) => {
       case GET_ACTIVIDAD:
         return {
           ...state,
-          actividad: action.payload,
+          actividad: [...state.actividad, action.payload],
         }
     //Si no coincide ninguna accion me devuelve mi estado como estaba
     default: return {...state}               

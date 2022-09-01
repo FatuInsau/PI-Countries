@@ -14,13 +14,15 @@
 .divLanding_h3{
   text-align: right;
   margin: 1rem 0;
-  font-size: 3rem;
+  font-size: 5.5rem;
   padding: 1rem 6rem 6px;
-  color: #000d37;
+  color: #000a30;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
   font-weight: bold;
+  font-family: 'Charm', cursive;
+  text-shadow: 2px 2px 3px white;
 }
 
 .divLanding_a{
@@ -35,12 +37,13 @@
   background-image: url('../imagenes/boton.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   color: whitesmoke;
   margin: 2rem;
-  padding: 1rem 5rem;
-  border-radius: 0.5rem;
+  padding: 0.5rem 4rem;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: bold;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  font-family: 'Cormorant SC', serif;
 }
