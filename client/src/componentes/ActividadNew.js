@@ -13,6 +13,9 @@ function validate (input) {
   if (!input.nombre) {
     error.nombre = 'Se requiere el nombre';
   } 
+  if (input.nombre.length > 250) {
+    error.nombre = 'El nombre es muy largo';
+  }
   if (input.dificultad===0 || input.dificultad === 'Dificultades') {
     error.dificultad = 'Se requiere la dificultad';
   } 
@@ -39,6 +42,7 @@ export default function ActividadNew(){
     duracion: '',
     temporada: '',
     idpaises: [],
+    paises:[],
   })
 
   allPaises.sort( function (a,b){
@@ -75,9 +79,11 @@ export default function ActividadNew(){
   }
 
   function handleSelectPais(e) {
+    var id = (allPaises.filter((p)=> p.nombre=== e.target.value))[0].id
     setInput({
       ...input,
-      idpaises: [...input.idpaises,e.target.value],
+      paises:[...input.paises,e.target.value],
+      idpaises: [...input.idpaises,id],
     })
   }
 
@@ -114,11 +120,15 @@ export default function ActividadNew(){
   const duraciones = ['Duración','30 min','1 hora', '3 horas', '5 horas'];
 
   function handleDelete (pa) {
+    var id = (allPaises.filter((p)=> p.nombre=== pa))[0].id
     setInput({
       ...input,
-      idpaises: input.idpaises.filter( p => p !== pa)
+      paises: input.paises.filter(p => p!== pa),
+      idpaises: input.idpaises.filter( p => p !== id)
     })
   }
+
+  console.log(input)
 
   return (
     <section className="sectionActividadNew">
@@ -131,7 +141,7 @@ export default function ActividadNew(){
         <form onSubmit={ (e) => handleSubmit(e) } className='div_form' >
           <section className="form_section">
             <div className="form_div" >
-              <label><b>Nombre: </b></label>
+              <label className="nombre"><b>Nombre: </b></label>
               <input 
                 type={"text"}
                 value={input.nombre}
@@ -177,7 +187,7 @@ export default function ActividadNew(){
             <select onChange={ (e) => handleSelectPais(e) } className= "form_select">
               <option value="Todos">Paises</option>
               {allPaises.map( (p) => (
-                <option value={p.nombre}>{p.nombre}</option>
+                <option value={p.nombre} id= {p.id}>{p.nombre}</option>
               ))}
             </select>
             { error.paises && (
@@ -185,10 +195,10 @@ export default function ActividadNew(){
             )}
           </div>
           
-          { input.idpaises.map( (pa) => 
+          { input.paises.map( (pa) => 
           <div className="seleccionados">
-            <p>{pa}</p>
-            <button className="botonX" onClick={() => handleDelete(pa)}>x</button>
+            <p className="p"><b>{pa}</b></p>
+            <button className="botonX" onClick={() => handleDelete(pa)}><b>x</b></button>
           </div> )}
           <button type={'submit'} className='form_button'>Crear</button>
 

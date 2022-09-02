@@ -60,7 +60,9 @@ const rootReducer = (state = initialState, action) => {
     let filtrados = [];
     state.paises.forEach((p) => {
         p.actTuris.forEach((a) => {
-            if(a.nombre === action.payload) {
+          if(action.payload==='todos') {
+            return filtrados = [...state.allPaises];
+          } else if(a.nombre === action.payload) {
                 return filtrados.push(p);
             }
         })
@@ -103,8 +105,10 @@ const rootReducer = (state = initialState, action) => {
       case POST_ACTIVIDAD:
         return {
           ...state,
+          actividad: [...state.actividad, action.payload]
         }
       case GET_PAISES_DETALLE:
+
         return {
           ...state,
           pais: action.payload,

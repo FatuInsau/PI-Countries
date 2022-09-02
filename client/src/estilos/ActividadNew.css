@@ -34,7 +34,7 @@
 .form_section {
   display: flex;
   margin: 0.5rem 1rem;
-
+  align-items: center;
 }
 
 .form_div {
@@ -75,4 +75,48 @@
   display: flex;
   flex-direction: column;
   padding: 0.8rem;
+}
+
+.div_input {
+  background-color: #3f0e1e;
+  color: white;
+  border-radius: 5px;
+}
+
+.nombre {
+  font-size: 1rem;
+}
+
+.botonX {
+  color: #3f0e1e;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #fbfff8;
+  padding: 0.3rem;
+}
+
+.p {
+  font-size: 1rem;
+  padding: 0.2rem;
+}
+
+.seleccionados {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form_button {
+  color: whitesmoke;
+  margin: 0.5rem;
+  padding: 0.3rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+  background-color: #3f0e1e;
+  border: 2px solid #8c7325;
+  font-family: 'Cormorant SC', serif;
 }

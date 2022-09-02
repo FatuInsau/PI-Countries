@@ -20,6 +20,7 @@ export const getAllPaises = () => {
     }).catch( err => console.log(err))
   }};
 
+
 export const getPaisesDetalle = (id) => {
   return function (dispatch){
     return fetch( `http://localhost:3001/countries/${id}` )

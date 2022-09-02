@@ -53,7 +53,6 @@ export default function Home(){
   };
   
   //Despacho esta action
-  //VER SI ASI ANDA
   useEffect( () => {
     dispatch(getAllPaises());
     dispatch(getActividad())
