@@ -6,6 +6,7 @@ import Landing from './componentes/Landing';
 import Home from './componentes/Home';
 import Detalle from './componentes/Detalle';
 import ActividadNew from './componentes/ActividadNew';
+import Error from './componentes/Error';
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
 
         <Route path={'/home'} component={ Home } />
 
-        <Route path= {'/'} component={ Landing } />
+        <Route exact path= {'/'} component={ Landing } />
+
+        <Route path={'/'} component={Error} />
         
       </Switch>
     
