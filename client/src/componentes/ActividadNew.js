@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import '../estilos/ActividadNew.css';
 
 
-//PRUEBA, NO ESTÁ LISTO
-
 function validate (input) {
   let error= {};
   if (!input.nombre) {

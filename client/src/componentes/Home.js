@@ -21,6 +21,7 @@ export default function Home(){
   const dispatch = useDispatch();
   const allPaises = useSelector( (state) => state.paises);
   const allAct = useSelector( (state) => state.actividad);
+  const copiaPaises = useSelector( (state) => state.allPaises);
   //Mi estado de la página actual
   const [currentPage,setCurrentPage]=useState(1);
   //Me fijo cuántos paises tengo que mostrar por página
@@ -139,9 +140,11 @@ export default function Home(){
                 </NavLink>
               </div>              
             );
-        }) : 
+        }) : copiaPaises.length < 0 ?
           <Loading/>
-        
+          : <div>
+              <p><b>No existen países con esas características.</b></p>
+            </div>
       };
       </div>
       <div className="sectionHome_divPaginado">

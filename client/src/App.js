@@ -7,7 +7,6 @@ import Home from './componentes/Home';
 import Detalle from './componentes/Detalle';
 import ActividadNew from './componentes/ActividadNew';
 import Error from './componentes/Error';
-import Loading from './componentes/Loading';
 
 function App() {
   return (
@@ -15,8 +14,6 @@ function App() {
 
       <Route path={'/home'} component={ NavBar } />
       
-      
-
       <Switch>
 
         <Route path={'/home/crearActividad'} component={ ActividadNew } />

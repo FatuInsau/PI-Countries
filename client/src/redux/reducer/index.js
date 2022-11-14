@@ -121,7 +121,7 @@ const rootReducer = (state = initialState, action) => {
       case GET_ACTIVIDAD:
         return {
           ...state,
-          actividad: [...state.actividad, action.payload],
+          actividad: [...action.payload],
         }
     //Si no coincide ninguna accion me devuelve mi estado como estaba
     default: return {...state}               
