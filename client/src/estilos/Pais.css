@@ -18,8 +18,46 @@
   padding: 2rem;
 }
 
+.section_h3 {
+  font-size: 1.7rem;
+  margin: 1rem;
+  color: #4c4433;
+  padding: 2rem;
+  font-family: 'Flow Circular', cursive;
+}
+
 .sectionPais_p {
   font-size: 1.2rem;
   color: black;
   padding: 1rem;
+}
+
+.section_p {
+  font-size: 1.2rem;
+  color: #4c4433;
+  padding: 1rem;
+  font-family: 'Flow Circular', cursive;
+}
+
+.div_grande {
+  padding: 2rem;
+  background-color: #847450de;
+  margin: 1rem;
+  border-radius: 27px;
+  box-shadow: 4px 6px 5px #504737;
+  width: 20rem;
+  height: 15rem;
+}
+
+.div_Loading {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+
+.imagenlugar {
+  width: 15rem;
+  height: 8rem;
+  background-color: #4c4433b8;
+  border-radius: 20px;
+  margin: 1rem;
 }

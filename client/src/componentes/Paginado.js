@@ -7,7 +7,7 @@ export default function Paginado ({ allPaises, paginado }) {
   
   const numeroDePaginas = [];
 
-  for (let i=1; i<=Math.ceil(allPaises/10); i++){
+  for (let i=1; i<=Math.ceil(allPaises/9); i++){
     numeroDePaginas.push(i);
   }
 

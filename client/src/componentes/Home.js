@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import '../estilos/Home.css'
+import Loading from "./Loading";
 
 
 export default function Home(){
@@ -23,7 +24,7 @@ export default function Home(){
   //Mi estado de la página actual
   const [currentPage,setCurrentPage]=useState(1);
   //Me fijo cuántos paises tengo que mostrar por página
-  const [paisPorPagina,setPaisPorPagina]=useState(10);
+  const [paisPorPagina,setPaisPorPagina]=useState(9);
   const [orden, setOrden]=useState('');
 
   //Indice del ultimo pais por pagina
@@ -126,7 +127,7 @@ export default function Home(){
       </div>
       <div className="sectionHome_divPaises">
         {
-          currentPais?.map( pais => {
+          currentPais.length>0 ? currentPais.map( pais => {
             return (
               <div className="div_divpais" key={pais.id}>
                 <NavLink to={'/home/'+ pais.id} className='div_a'>
@@ -138,8 +139,10 @@ export default function Home(){
                 </NavLink>
               </div>              
             );
-        })
-      }
+        }) : 
+          <Loading/>
+        
+      };
       </div>
       <div className="sectionHome_divPaginado">
         <Paginado

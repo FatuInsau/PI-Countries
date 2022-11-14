@@ -48,7 +48,7 @@ export default function Detalle(props){
                 </div>
               )
             }):
-            <p className="pAux">No tiene ninguna.</p>
+            <p className="pAux">No tiene ninguna</p>
           }
       </div>
       </div>
